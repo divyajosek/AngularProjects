@@ -1,0 +1,11 @@
+<div>
+    <ul>
+        <li *ngFor="let menu of List"><a href="#" (click)="menuItemClick($event,menu)">{{menu}}</a></li>
+    </ul>
+</div>
+<div *ngFor="let menu of buttonList;let i = index">
+   <button (click)="buttonItemClick(i)" [ngClass]="{'active': selectedBtnIndex === i}">{{ menu }}</button> 
+</div>
+
+
+

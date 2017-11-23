@@ -1,0 +1,47 @@
+<app-header [List]="menuList" [buttonList] = "buttonList" (onMenuClick)="onMenuClick($event)"
+ (onButtonClick) = "onSelectDiv($event)"></app-header>
+
+<!--<app-header [sectionL]="sectionList" (onMenuClick)="onSectionClick($event)"></app-header>-->
+
+<!-- List of Employees -->
+ <!-- <button [ngClass]="{'active':activeview === 'list'}" (click)="onSelectDiv('list')">View Emp</button>
+  <button [ngClass]="{'active':activeview === 'addEmployee'}" (click)="onSelectDiv('addEmployee')">Add Emp</button> 
+ -->
+ <div *ngIf="activeViewIndex === 0">
+  <table>
+    <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>View</th>
+          <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor ="let emp of employees; let i=index" [ngClass]="{'selected':emp.selected}">
+          <td>{{emp.name}}</td>
+          <td>{{emp.age}}</td> 
+          <td><button (click)="selectemployee(emp)">View Details</button></td> 
+          <td><button (click)="deleteEmployee(i)">Delete </button></td> 
+        </tr>
+    </tbody>
+  </table>
+  <!--<div *ngIf="selectedEmployee">
+    <h3>Selected Employee</h3>
+    <p>Name :{{selectedEmployee.name}}</p>
+    <p>Age :{{selectedEmployee.age}}</p>
+  </div>-->
+ </div>
+
+<div *ngIf="activeViewIndex === 1">
+  <h2>Add Employee</h2>
+  <!--<div>Name : <input type="text" #name></div>
+  <div>Age : <input type="number" #age (keyup.enter)="addEmployee(name.value,age.value)"></div>-->
+  
+  <div>Name : <input type="text" [(ngModel)]="newEmployee.name"></div>
+  {{newEmployee.name}}
+  <div>Age : <input type="number" [(ngModel)]="newEmployee.age"></div>
+  <button (click)="addEmployee()">Add Employee</button><button (click)="clearAddEmployee()">Clear</button>
+</div>
+
+<app-employee-details [selectedEmployee]="selectedEmployee"></app-employee-details>
